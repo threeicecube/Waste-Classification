@@ -94,7 +94,7 @@ learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
 ## --
 
-model = load_learner(path, 'model/export.pkl')
+# model = load_learner(path, 'model/export.pkl')
 
 app = Flask(__name__)
 
@@ -117,7 +117,8 @@ def predict():
     img = open_image(to_predict)
 
     #Getting the prediction from the model
-    prediction = model.predict(img)[0]
+    ## prediction = model.predict(img)[0]
+    prediction = learn.predict(img)[0]
 
     #Render the result in the html template
     return render_template('index.html', prediction_text='Your Prediction :  {} '.format(prediction))
